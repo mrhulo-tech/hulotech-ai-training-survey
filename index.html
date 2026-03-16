@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>HuloTech AI Training Survey</title>
+
 <style>
+
 body{
 font-family:Arial;
-margin:40px;
 background:#f5f7fb;
+margin:0;
+padding:40px;
 }
 
 .container{
@@ -19,7 +23,7 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 h1{
-color:#2b3a67;
+color:#1f2a44;
 }
 
 label{
@@ -32,80 +36,147 @@ textarea,input,select{
 width:100%;
 padding:10px;
 margin-top:5px;
-border-radius:5px;
+border-radius:6px;
 border:1px solid #ccc;
+font-size:14px;
 }
 
 button{
 margin-top:25px;
-padding:12px 20px;
-background:#2b3a67;
+padding:14px 20px;
+background:#1f2a44;
 color:white;
 border:none;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
+font-size:15px;
 }
 
 button:hover{
-background:#1c2541;
+background:#141c33;
 }
+
+.success{
+margin-top:20px;
+padding:15px;
+background:#e6f4ea;
+border:1px solid #b7e1cd;
+border-radius:6px;
+display:none;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>HuloTech AI Training Survey</h1>
+<h1>HuloTech AI Training Preparation Survey</h1>
 
-<p>This short survey will help us tailor the AI training session to your needs.</p>
+<p>
+This short survey (about 5 minutes) will help us tailor the upcoming AI training
+to your needs and interests.
+</p>
 
-<form>
+<form id="surveyForm">
 
 <label>Your role</label>
-<select>
+
+<select required>
+
+<option value="">Select</option>
 <option>Executive / Manager</option>
 <option>Professional</option>
 <option>Technical specialist</option>
+<option>Researcher / Academic</option>
 <option>Student</option>
 <option>Other</option>
+
 </select>
+
 
 <label>Your sector</label>
-<select>
+
+<select required>
+
+<option value="">Select</option>
 <option>Government</option>
-<option>Education</option>
+<option>Education / University</option>
 <option>Private company</option>
 <option>Consulting</option>
+<option>Non-profit</option>
 <option>Other</option>
+
 </select>
 
+
 <label>How familiar are you with AI tools?</label>
-<select>
+
+<select required>
+
+<option value="">Select</option>
 <option>Never used AI</option>
 <option>Tried a few times</option>
 <option>Occasional use</option>
 <option>Regular use</option>
 <option>Daily use</option>
+
 </select>
 
+
 <label>Which AI tools have you used?</label>
+
 <textarea placeholder="ChatGPT, Claude, Copilot, etc"></textarea>
 
+
 <label>What tasks consume the most time in your work?</label>
+
 <textarea></textarea>
+
 
 <label>If you could automate one task using AI, what would it be?</label>
+
 <textarea></textarea>
 
-<label>Describe a problem you would like to solve with AI</label>
+
+<label>Describe a problem or irritant you would like to solve with AI</label>
+
 <textarea></textarea>
+
 
 <button type="submit">Submit</button>
 
 </form>
 
+
+<div class="success" id="successMessage">
+
+Thank you for completing the survey.  
+Your responses will help us tailor the training session.
+
 </div>
 
+
+</div>
+
+
+<script>
+
+document.getElementById("surveyForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+document.getElementById("successMessage").style.display = "block";
+
+document.getElementById("surveyForm").reset();
+
+});
+
+</script>
+
+
 </body>
+
 </html>
