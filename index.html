@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
+<meta charset="UTF-8">
 
 <title>HuloTech AI Training Survey</title>
 
@@ -42,25 +45,24 @@ font-size:14px;
 }
 
 button{
-margin-top:25px;
-padding:14px 20px;
+margin-top:20px;
+padding:12px 20px;
 background:#1f2a44;
 color:white;
 border:none;
 border-radius:6px;
 cursor:pointer;
-font-size:15px;
 }
 
-button:hover{
-background:#141c33;
+.langswitch{
+float:right;
+margin-bottom:10px;
 }
 
 .success{
 margin-top:20px;
 padding:15px;
 background:#e6f4ea;
-border:1px solid #b7e1cd;
 border-radius:6px;
 display:none;
 }
@@ -73,20 +75,23 @@ display:none;
 
 <div class="container">
 
-<h1>HuloTech AI Training Preparation Survey</h1>
+<div class="langswitch">
 
-<p>
-This short survey (about 5 minutes) will help us tailor the upcoming AI training
-to your needs and interests.
-</p>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('fr')">Français</button>
+
+</div>
+
+<h1 id="title"></h1>
+
+<p id="intro"></p>
 
 <form id="surveyForm">
 
-<label>Your role</label>
+<label id="roleLabel"></label>
 
-<select required>
+<select>
 
-<option value="">Select</option>
 <option>Executive / Manager</option>
 <option>Professional</option>
 <option>Technical specialist</option>
@@ -97,11 +102,10 @@ to your needs and interests.
 </select>
 
 
-<label>Your sector</label>
+<label id="sectorLabel"></label>
 
-<select required>
+<select>
 
-<option value="">Select</option>
 <option>Government</option>
 <option>Education / University</option>
 <option>Private company</option>
@@ -112,11 +116,10 @@ to your needs and interests.
 </select>
 
 
-<label>How familiar are you with AI tools?</label>
+<label id="aiLevelLabel"></label>
 
-<select required>
+<select>
 
-<option value="">Select</option>
 <option>Never used AI</option>
 <option>Tried a few times</option>
 <option>Occasional use</option>
@@ -126,56 +129,123 @@ to your needs and interests.
 </select>
 
 
-<label>Which AI tools have you used?</label>
-
-<textarea placeholder="ChatGPT, Claude, Copilot, etc"></textarea>
-
-
-<label>What tasks consume the most time in your work?</label>
+<label id="toolsLabel"></label>
 
 <textarea></textarea>
 
 
-<label>If you could automate one task using AI, what would it be?</label>
+<label id="timeLabel"></label>
 
 <textarea></textarea>
 
 
-<label>Describe a problem or irritant you would like to solve with AI</label>
+<label id="automationLabel"></label>
 
 <textarea></textarea>
 
 
-<button type="submit">Submit</button>
+<label id="problemLabel"></label>
+
+<textarea></textarea>
+
+
+<button type="submit" id="submitBtn"></button>
 
 </form>
 
 
-<div class="success" id="successMessage">
-
-Thank you for completing the survey.  
-Your responses will help us tailor the training session.
-
-</div>
-
+<div class="success" id="successMessage"></div>
 
 </div>
 
 
 <script>
 
-document.getElementById("surveyForm").addEventListener("submit", function(e){
+const translations = {
 
-e.preventDefault();
+en: {
 
-document.getElementById("successMessage").style.display = "block";
+title:"HuloTech AI Training Preparation Survey",
 
-document.getElementById("surveyForm").reset();
+intro:"This short survey (about 5 minutes) will help us tailor the upcoming AI training to your needs.",
 
-});
+role:"Your role",
+
+sector:"Your sector",
+
+aiLevel:"How familiar are you with AI tools?",
+
+tools:"Which AI tools have you used?",
+
+time:"What tasks consume the most time in your work?",
+
+automation:"If you could automate one task using AI, what would it be?",
+
+problem:"Describe a problem you would like to solve with AI",
+
+submit:"Submit",
+
+success:"Thank you for completing the survey."
+
+},
+
+fr: {
+
+title:"Questionnaire de préparation – Formation IA HuloTech",
+
+intro:"Ce court questionnaire (environ 5 minutes) nous aidera à adapter la formation IA à vos besoins.",
+
+role:"Votre rôle",
+
+sector:"Votre secteur",
+
+aiLevel:"Quel est votre niveau de familiarité avec les outils d’IA?",
+
+tools:"Quels outils d’IA avez-vous utilisés?",
+
+time:"Quelles tâches vous prennent le plus de temps au travail?",
+
+automation:"Quelle tâche aimeriez-vous automatiser avec l’IA?",
+
+problem:"Décrivez un problème que vous aimeriez résoudre avec l’IA",
+
+submit:"Envoyer",
+
+success:"Merci d’avoir rempli le questionnaire."
+
+}
+
+}
+
+
+function setLang(lang){
+
+document.getElementById("title").innerText = translations[lang].title
+document.getElementById("intro").innerText = translations[lang].intro
+document.getElementById("roleLabel").innerText = translations[lang].role
+document.getElementById("sectorLabel").innerText = translations[lang].sector
+document.getElementById("aiLevelLabel").innerText = translations[lang].aiLevel
+document.getElementById("toolsLabel").innerText = translations[lang].tools
+document.getElementById("timeLabel").innerText = translations[lang].time
+document.getElementById("automationLabel").innerText = translations[lang].automation
+document.getElementById("problemLabel").innerText = translations[lang].problem
+document.getElementById("submitBtn").innerText = translations[lang].submit
+document.getElementById("successMessage").innerText = translations[lang].success
+
+}
+
+setLang('en')
+
+
+document.getElementById("surveyForm").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+document.getElementById("successMessage").style.display="block"
+
+})
 
 </script>
-
 
 </body>
 
